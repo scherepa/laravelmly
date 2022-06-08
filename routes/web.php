@@ -22,20 +22,19 @@ Route::get('/', function () {
     $data = str_replace('[', "", $data);
     $data = str_replace(']', "", $data);
     $data = explode(",", $data);
-    foreach ($data as $item) {
-        $sum = 0;
+    $sum = 0;
+    foreach ($data as $index => $item) {
         for ($i = 0; $i < strlen($item); $i++) {
             if ($i % 2 != 0) {
-                $sum += $item[$i] * 2 >= 10 ? $item[$i] % 10 + ($item[$i] - $item[$i] % 10) / 10 : $item[$i] * 2;
+                $sum += $item[$i] * 2 >= 10 ? 2 * $item[$i] % 10 + (2 * $item[$i] - 2 * $item[$i] % 10) / 10 : $item[$i] * 2;
             } else {
                 $sum += $item[$i];
             }
         }
-        if (
-            $sum % 10 == 0
-        ) {
+        if ($sum % 10 == 0) {
             array_push($tdata, $item);
         }
+        $sum = 0;
     }
     $all = count($tdata);
     $tdata = array_chunk($tdata, 100);
