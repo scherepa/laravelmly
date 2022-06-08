@@ -26,7 +26,8 @@ Route::get('/', function () {
     foreach ($data as $index => $item) {
         for ($i = 0; $i < strlen($item); $i++) {
             if ($i % 2 != 0) {
-                $sum += $item[$i] * 2 >= 10 ? 2 * $item[$i] % 10 + (2 * $item[$i] - 2 * $item[$i] % 10) / 10 : $item[$i] * 2;
+                $pr = $item[$i] * 2;
+                $sum += $pr >= 10 ? $pr % 10 + ($pr - $pr % 10) / 10 : $pr;
             } else {
                 $sum += $item[$i];
             }
