@@ -18,6 +18,7 @@ Route::get('/', function () {
     //return view('welcome');
     $tdata = [];
     $response = Http::get('http://api.mly.co.il');
+    //.....it is strange but response we get this way is a string... 
     $data = str_replace('"', "", $response);
     $data = str_replace('[', "", $data);
     $data = str_replace(']', "", $data);
@@ -38,11 +39,13 @@ Route::get('/', function () {
         $sum = 0;
     }
     $all = count($tdata);
+    //------ 100 per page
     $tdata = array_chunk($tdata, 100);
     //dd($tdata[4]);
     //dd($tdata);
     //dd($tdata->count());
     ($tdata);
+    //------  if we want to prepare $tdata for csv we may use implode(",", $tdata)
 
     return view('mly', compact('tdata', 'all'));
 });

@@ -12,15 +12,15 @@ $page = isset($_GET["page"]) ? ($_GET["page"] - 1) : 0;
 
 </div>
 
-@if($page < $totalPages ) <div class="grid grid-cols-4 gap-4 px-12">
-    @foreach ($tdata[$page] as $d)<div class="px-2">{{$d}}
+@if($page < $totalPages ) <div class="grid grid-cols-2  gap-2 md:grid-cols-4 md:gap-4 md:px-12">
+    @foreach ($tdata[$page] as $d)<div class="text-center">{{$d}}
     </div>
     @endforeach
     </div>
     @else
     <div class="text-center h1">There no more pages</div>
     @endif
-    <div class="flex  px-12 justify-between pt-12">
+    <div class="flex  md:px-12 justify-between pt-12">
         <a href="/?page={{$page}}" class=" w-4/12 {{$page > 0 ? '' : 'hidden'}}">
             <div class="bg-indigo-500 text-white rounded py-2 text-center">PREV</div>
         </a>
